@@ -2,6 +2,6 @@ import { IUser } from "@src/interfaces/IUser";
 import { Action } from "easy-peasy";
 
 export interface IUserStore {
-  state?: {};
+  state?: IUser;
   setUser: Action<IUserStore, IUser | null>;
 }
