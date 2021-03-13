@@ -10,6 +10,7 @@ import BellSvg from "@heroicons/outline/bell.svg";
 import UserSolidSvg from "@heroicons/solid/user.svg";
 import ChevronDownSvg from "@heroicons/solid/chevron-down.svg";
 import cn from "classnames";
+import { BranchList } from "./pages/Branches/List";
 
 const ProfileDropdown: React.FC = () => {
   const history = useHistory();
@@ -140,9 +141,11 @@ const Home: React.FC = () => {
           <Navbar />
           <Switch>
             <Route exact path={path}>
-              <h3>Please select a topic.</h3>
+              <h3>Home Page</h3>
             </Route>
-            <Route path={`${path}/:topicId`}>"other routes"</Route>
+            <Route path={`${path}/branches`}>
+              <BranchList />
+            </Route>
           </Switch>
         </div>
       </div>

@@ -11,3 +11,7 @@ export const setKisToken = (val) => {
 export const removeKisToken = () => {
   document.cookie = "kis_token=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 };
+
+export const addressToString = (address) => {
+  return address.street + " " + address.house_number + ", " + address.city_name;
+};

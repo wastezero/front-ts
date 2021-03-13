@@ -25,4 +25,8 @@ export class Api extends HttpClient {
   public whoAmI = () => {
     return this.instance.get<IUser>("who_am_i");
   };
+
+  public branches = () => {
+    return this.instance.get("admin_panel/branches");
+  };
 }
