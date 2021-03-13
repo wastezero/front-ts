@@ -8,7 +8,13 @@ interface IToggleProps {
 }
 
 const LoadingContainer: React.FunctionComponent<IToggleProps> = (props) => {
-  return !props.loading ? props.children : <LoadingSpinner />;
+  return !props.loading ? (
+    props.children
+  ) : (
+    <div className="h-screen">
+      <LoadingSpinner />
+    </div>
+  );
 };
 
 export default LoadingContainer;

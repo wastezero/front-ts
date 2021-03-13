@@ -7,3 +7,7 @@ export function getCookie(name) {
 export const setKisToken = (val) => {
   document.cookie = "kis_token=" + val + "; path=/; Max-Age=2592000";
 };
+
+export const removeKisToken = () => {
+  document.cookie = "kis_token=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+};

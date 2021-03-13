@@ -26,7 +26,7 @@ const LoginPage: React.FunctionComponent<IEnterNamePageProps> = (props) => {
         currentUserActions.setUser(user.data);
         history.push("account");
       })
-      .finally(() => setLoading(false));
+      .catch(() => setLoading(false));
   };
 
   return (
