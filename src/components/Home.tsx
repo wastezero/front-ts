@@ -4,6 +4,7 @@ import { getCookie, setKisToken } from "@src/utils/utils";
 import * as React from "react";
 import { Switch, Route, useHistory, useRouteMatch } from "react-router-dom";
 import LoadingContainer from "./atoms/LoadingContainer";
+import Sidebar from "./organisms/SIdebar";
 
 const Home: React.FC = () => {
   const api = new Api();
@@ -35,12 +36,17 @@ const Home: React.FC = () => {
   }, []);
   return (
     <LoadingContainer loading={loading}>
-      <Switch>
-        <Route exact path={path}>
-          <h3>Please select a topic.</h3>
-        </Route>
-        <Route path={`${path}/:topicId`}>"other routes"</Route>
-      </Switch>
+      <div className="h-screen flex overflow-hidden bg-cool-gray-100">
+        <Sidebar />
+        <div className="flex-1 flex flex-col overflow-auto focus:outline-none">
+          <Switch>
+            <Route exact path={path}>
+              <h3>Please select a topic.</h3>
+            </Route>
+            <Route path={`${path}/:topicId`}>"other routes"</Route>
+          </Switch>
+        </div>
+      </div>
     </LoadingContainer>
   );
 };
