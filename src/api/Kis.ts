@@ -29,4 +29,8 @@ export class Api extends HttpClient {
   public branches = () => {
     return this.instance.get("admin_panel/branches");
   };
+
+  public restaurants = () => {
+    return this.instance.get("admin_panel/restaurants");
+  };
 }
