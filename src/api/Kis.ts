@@ -22,6 +22,10 @@ export class Api extends HttpClient {
     return this.instance.post<IUser>("login", body);
   };
 
+  public register = (body) => {
+    return this.instance.post("sign_up", body);
+  };
+
   public whoAmI = () => {
     return this.instance.get<IUser>("who_am_i");
   };
