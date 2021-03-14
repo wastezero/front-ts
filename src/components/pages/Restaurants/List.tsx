@@ -51,7 +51,7 @@ const RestaurantList: React.FunctionComponent<IRestaurantListProps> = (
                 Restaurants
               </h3>
               <Link
-                to={`${pathname}/create`}
+                to={`/register/restaurant`}
                 className="text-sm bg-transparent ml-auto cursor-pointer hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
               >
                 Create

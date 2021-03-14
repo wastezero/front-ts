@@ -34,6 +34,7 @@ const RegistrationManagerPage: React.FunctionComponent<IEnterNamePageProps> = (
           password,
           password_confirmation: passwordConfirm,
           name,
+          branch_id: (branch as any).id,
         },
       })
       .then((user) => {
