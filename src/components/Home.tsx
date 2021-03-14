@@ -13,6 +13,7 @@ import cn from "classnames";
 import { BranchList } from "./pages/Branches/List";
 import RestaurantList from "./pages/Restaurants/List";
 import { ManagerList } from "./pages/Managers/List";
+import { FoodList } from "./pages/Foods/List";
 
 const ProfileDropdown: React.FC = () => {
   const history = useHistory();
@@ -153,6 +154,9 @@ const Home: React.FC = () => {
             </Route>
             <Route path={`${path}/managers`}>
               <ManagerList />
+            </Route>
+            <Route path={`${path}/foods`}>
+              <FoodList />
             </Route>
           </Switch>
         </div>
