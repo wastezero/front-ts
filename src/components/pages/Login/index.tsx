@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Api } from "@src/api/Kis";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Button from "@src/components/atoms/Button";
 import LogoImageUrl from "@src/assets/img/logo.png";
 import { useStoreActions } from "@src/hooks";
@@ -129,9 +129,12 @@ const LoginPage: React.FunctionComponent<IEnterNamePageProps> = (props) => {
             </div>
             <p className="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
               Or{" "}
-              <a className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+              <Link
+                to="/register/choose"
+                className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+              >
                 register here
-              </a>
+              </Link>
             </p>
           </form>
           <div className="mt-6">
