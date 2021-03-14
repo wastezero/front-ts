@@ -63,7 +63,10 @@ const RestaurantsDropdown: React.FunctionComponent<IRestaurantsDropdownProps> = 
                   key={`wallet-${index}`}
                   className="group flex flex-col items-start px-4 py-2 text-sm leading-5 cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                   role="menuitem"
-                  onClick={(_) => onChange(item)}
+                  onClick={(_) => {
+                    onChange(item);
+                    setIsDropdownShown(false);
+                  }}
                 >
                   <p className="text-lg font-semibold text-gray-600">
                     {item.name}
