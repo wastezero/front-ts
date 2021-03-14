@@ -13,19 +13,32 @@ export function BranchList(props: IRestaurantListProps) {
   const api = new Api();
   const [loading, setLoading] = React.useState(true);
   let { pathname } = useLocation();
+  const [pagination, setPagantion] = React.useState(null);
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
     api.branches().then((response) => {
       setLoading(false);
       setItems(response.data.branches);
+      setPagantion(response.data.meta);
     });
   }, []);
+
+  const onPaginate = (page) => {
+    setLoading(true);
+    api.foods(page).then((response) => {
+      setLoading(false);
+      setItems(response.data.foods);
+      setPagantion(response.data.meta);
+    });
+  };
 
   return (
     <LoadingContainer loading={loading}>
       <ItemsListLayout title="Branches" createRoute={`${pathname}/create`}>
         <ItemsTable
+          pagination={pagination}
+          onPaginate={onPaginate}
           columns={[
             {
               title: "ID",

@@ -26,23 +26,27 @@ export class Api extends HttpClient {
     return this.instance.get<IUser>("who_am_i");
   };
 
-  public branches = () => {
-    return this.instance.get("admin_panel/branches");
+  public branches = (page?) => {
+    return this.instance.get(`admin_panel/branches?page=${page ? page : 1}`);
   };
 
-  public restaurants = () => {
-    return this.instance.get("admin_panel/restaurants");
+  public restaurants = (page?) => {
+    return this.instance.get(`admin_panel/restaurants?page=${page ? page : 1}`);
   };
 
-  public managers = () => {
-    return this.instance.get("admin_panel/managers");
+  public managers = (page?) => {
+    return this.instance.get(`admin_panel/managers?page=${page ? page : 1}`);
   };
 
-  public foods = () => {
-    return this.instance.get("admin_panel/foods");
+  public foods = (page?) => {
+    return this.instance.get(`admin_panel/foods?page=${page ? page : 1}`);
   };
 
-  public orders = () => {
-    return this.instance.get("client/orders");
+  public orders = (page?) => {
+    return this.instance.get(`client/orders?page=${page ? page : 1}`);
+  };
+
+  public createFood = (body) => {
+    return this.instance.post("admin_panel/foods", body);
   };
 }
