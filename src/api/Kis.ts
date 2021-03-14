@@ -46,6 +46,10 @@ export class Api extends HttpClient {
     return this.instance.get(`client/orders?page=${page ? page : 1}`);
   };
 
+  public createOrder = (body) => {
+    return this.instance.post(`admin_panel/orders`, body);
+  };
+
   public createFood = (body) => {
     return this.instance.post("admin_panel/foods", body);
   };
