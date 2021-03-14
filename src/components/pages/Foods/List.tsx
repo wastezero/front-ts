@@ -4,7 +4,6 @@ import ItemsTable from "@src/components/organisms/ItemsTable";
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import EyeSvg from "@heroicons/outline/eye.svg";
-import CheckCircleSvg from "@heroicons/solid/check-circle.svg";
 import ItemsListLayout from "@src/components/organisms/ItemsListLayout";
 export interface IFoodListProps {}
 

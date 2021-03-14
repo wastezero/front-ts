@@ -42,6 +42,10 @@ export class Api extends HttpClient {
     return this.instance.get(`admin_panel/restaurants?page=${page ? page : 1}`);
   };
 
+  public restaurant = (id) => {
+    return this.instance.get(`admin_panel/restaurants/${id}`);
+  };
+
   public managers = (page?) => {
     return this.instance.get(`admin_panel/managers?page=${page ? page : 1}`);
   };
