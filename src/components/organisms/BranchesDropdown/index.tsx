@@ -25,7 +25,7 @@ const BranchesDropdown: React.FunctionComponent<IBranchesDropdownProps> = ({
   const [items, setItems] = React.useState([]);
   React.useEffect(() => {
     api
-      .branches()
+      .registration_branches()
       .then((response) => setItems(response.data.branches))
       .finally(() => setLoading(false));
   }, []);
