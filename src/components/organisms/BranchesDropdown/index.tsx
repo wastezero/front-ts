@@ -4,13 +4,15 @@ import cn from "classnames";
 import { Api } from "@src/api/Kis";
 import { useLocation } from "react-router-dom";
 import LoadingSpinner from "@src/components/atoms/LoadingSpinner";
+import OfficeBuildingSvg from "@heroicons/outline/office-building.svg";
+import { addressToString } from "@src/utils/utils";
 
-interface IFoodsDropdownProps {
+interface IBranchesDropdownProps {
   value: boolean | any;
   onChange: any;
 }
 
-const FoodsDropdown: React.FunctionComponent<IFoodsDropdownProps> = ({
+const BranchesDropdown: React.FunctionComponent<IBranchesDropdownProps> = ({
   value,
   onChange,
 }) => {
@@ -23,8 +25,8 @@ const FoodsDropdown: React.FunctionComponent<IFoodsDropdownProps> = ({
   const [items, setItems] = React.useState([]);
   React.useEffect(() => {
     api
-      .foods()
-      .then((response) => setItems(response.data.foods))
+      .branches()
+      .then((response) => setItems(response.data.branches))
       .finally(() => setLoading(false));
   }, []);
 
@@ -42,7 +44,7 @@ const FoodsDropdown: React.FunctionComponent<IFoodsDropdownProps> = ({
               },
             )}
           >
-            {value ? value.name : "Choose food"}
+            {value ? value.restaurant.name : "Choose branch"}
             <ChevronDownSvg className="-mr-1 ml-2 h-5 w-5" />
           </button>
         </span>
@@ -69,11 +71,12 @@ const FoodsDropdown: React.FunctionComponent<IFoodsDropdownProps> = ({
                   }}
                 >
                   <p className="text-lg font-semibold text-gray-600">
-                    {item.name}
+                    {item.restaurant.name}
                   </p>
                   <div className="flex space-x-2">
-                    <span className="py-0.5 rounded-full text-xs font-medium leading-4 bg-cool-gray-100 text-cool-gray-800 capitalize">
-                      {`id: ${item.id}`}
+                    <span className="py-0.5 flex space-x-2 rounded-full text-xs font-medium leading-4 bg-cool-gray-100 text-cool-gray-800 capitalize">
+                      <OfficeBuildingSvg className="w-4 h-4" />
+                      {`${addressToString(item.address)}`}
                     </span>
                   </div>
                 </div>
@@ -86,4 +89,4 @@ const FoodsDropdown: React.FunctionComponent<IFoodsDropdownProps> = ({
   );
 };
 
-export default FoodsDropdown;
+export default BranchesDropdown;
