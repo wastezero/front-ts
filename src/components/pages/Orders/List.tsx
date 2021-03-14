@@ -13,18 +13,31 @@ export function OrderList(props: IOrderListProps) {
   const [loading, setLoading] = React.useState(true);
   let { pathname } = useLocation();
   const [items, setItems] = React.useState([]);
+  const [pagination, setPagantion] = React.useState(null);
 
   React.useEffect(() => {
     api.orders().then((response) => {
       setLoading(false);
       setItems(response.data.orders);
+      setPagantion(response.data.meta);
     });
   }, []);
+
+  const onPaginate = (page) => {
+    setLoading(true);
+    api.foods(page).then((response) => {
+      setLoading(false);
+      setItems(response.data.foods);
+      setPagantion(response.data.meta);
+    });
+  };
 
   return (
     <LoadingContainer loading={loading}>
       <ItemsListLayout title="Orders" createRoute={`${pathname}/create`}>
         <ItemsTable
+          pagination={pagination}
+          onPaginate={onPaginate}
           columns={[
             {
               title: "ID",

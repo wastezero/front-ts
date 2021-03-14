@@ -15,6 +15,7 @@ import RestaurantList from "./pages/Restaurants/List";
 import { ManagerList } from "./pages/Managers/List";
 import { FoodList } from "./pages/Foods/List";
 import { OrderList } from "./pages/Orders/List";
+import FoodCreate from "./pages/Foods/Create";
 
 const ProfileDropdown: React.FC = () => {
   const history = useHistory();
@@ -156,8 +157,11 @@ const Home: React.FC = () => {
             <Route path={`${path}/managers`}>
               <ManagerList />
             </Route>
-            <Route path={`${path}/foods`}>
+            <Route exact path={`${path}/foods`}>
               <FoodList />
+            </Route>
+            <Route path={`${path}/foods/create`}>
+              <FoodCreate />
             </Route>
             <Route path={`${path}/orders`}>
               <OrderList />

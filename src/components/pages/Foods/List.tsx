@@ -13,18 +13,31 @@ export function FoodList(props: IFoodListProps) {
   const [loading, setLoading] = React.useState(true);
   let { pathname } = useLocation();
   const [items, setItems] = React.useState([]);
+  const [pagination, setPagantion] = React.useState(null);
 
   React.useEffect(() => {
     api.foods().then((response) => {
       setLoading(false);
       setItems(response.data.foods);
+      setPagantion(response.data.meta);
     });
   }, []);
+
+  const onPaginate = (page) => {
+    setLoading(true);
+    api.foods(page).then((response) => {
+      setLoading(false);
+      setItems(response.data.foods);
+      setPagantion(response.data.meta);
+    });
+  };
 
   return (
     <LoadingContainer loading={loading}>
       <ItemsListLayout title="Foods" createRoute={`${pathname}/create`}>
         <ItemsTable
+          pagination={pagination}
+          onPaginate={onPaginate}
           columns={[
             {
               title: "ID",
@@ -60,7 +73,7 @@ export function FoodList(props: IFoodListProps) {
               title: "Restaurant id",
               content: (item) => (
                 <p className="text-cool-gray-700 group-hover:text-cool-gray-900">
-                  {`${item.restaurant_id ? item.restaurant_id : "–"}`}
+                  {`${item.restaurant ? item.restaurant.name : "–"}`}
                 </p>
               ),
             },
