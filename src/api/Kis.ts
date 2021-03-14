@@ -41,4 +41,8 @@ export class Api extends HttpClient {
   public foods = () => {
     return this.instance.get("admin_panel/foods");
   };
+
+  public orders = () => {
+    return this.instance.get("client/orders");
+  };
 }
