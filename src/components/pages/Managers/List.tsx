@@ -6,7 +6,40 @@ import { Link, useLocation } from "react-router-dom";
 import EyeSvg from "@heroicons/outline/eye.svg";
 import CheckCircleSvg from "@heroicons/solid/check-circle.svg";
 import ItemsListLayout from "@src/components/organisms/ItemsListLayout";
+import Button from "@src/components/atoms/Button";
 export interface IManagerListProps {}
+
+const ApproveBtn: React.FC<{ item: any }> = ({ item }) => {
+  const api = new Api();
+  const [loading, setLoading] = React.useState(false);
+  const [manager, setManager] = React.useState(item);
+
+  return manager.status === "confirmed" ? (
+    <dd className="flex items-center text-sm text-gray-700">
+      <CheckCircleSvg className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
+      Verified account
+    </dd>
+  ) : (
+    <Button
+      loading={loading}
+      type="button"
+      className="inline-flex items-center px-2 py-1 border border-transparent text-xs leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-teal focus:border-teal-700 active:bg-teal-700 transition duration-150 ease-in-out"
+      onClick={() => {
+        setLoading(true);
+        api
+          .approveManager(manager.id)
+          .then((response) => {
+            setManager(response.data);
+          })
+          .finally(() => setLoading(false));
+      }}
+    >
+      Confirm
+    </Button>
+  );
+
+  return;
+};
 
 export function ManagerList(props: IManagerListProps) {
   const api = new Api();
@@ -76,21 +109,7 @@ export function ManagerList(props: IManagerListProps) {
             },
             {
               title: "Status",
-              content: (item) =>
-                item.status === "confirmed" ? (
-                  <dd className="flex items-center text-sm text-gray-700">
-                    <CheckCircleSvg className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" />
-                    Verified account
-                  </dd>
-                ) : (
-                  <button
-                    type="button"
-                    className="inline-flex items-center px-2 py-1 border border-transparent text-xs leading-5 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal focus:border-teal-700 active:bg-teal-700 transition duration-150 ease-in-out"
-                    onClick={(_) => {}}
-                  >
-                    Confirm
-                  </button>
-                ),
+              content: (item) => <ApproveBtn item={item} />,
             },
           ]}
           items={items}

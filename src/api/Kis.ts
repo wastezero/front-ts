@@ -50,6 +50,10 @@ export class Api extends HttpClient {
     return this.instance.get(`admin_panel/managers?page=${page ? page : 1}`);
   };
 
+  public approveManager = (id) => {
+    return this.instance.post(`admin_panel/managers/${id}/approve`);
+  };
+
   public foods = (page?) => {
     return this.instance.get(`admin_panel/foods?page=${page ? page : 1}`);
   };
