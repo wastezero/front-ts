@@ -30,6 +30,10 @@ export class Api extends HttpClient {
     return this.instance.get<IUser>("who_am_i");
   };
 
+  public registration_branches = () => {
+    return this.instance.get(`registration/branches`);
+  };
+
   public branches = (page?) => {
     return this.instance.get(`admin_panel/branches?page=${page ? page : 1}`);
   };

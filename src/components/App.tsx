@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./Home";
 import RegistrationChoosePage from "./pages/RegistrationChoose";
 import RegistrationRestaurantPage from "./pages/RegistrationRestaurant";
+import RegistrationManagerPage from "./pages/RegistrationManager";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,9 @@ const App: React.FC = () => {
               </Route>
               <Route path={`/register/restaurant`}>
                 <RegistrationRestaurantPage />
+              </Route>
+              <Route path={`/register/manager`}>
+                <RegistrationManagerPage />
               </Route>
               <Route path={`/account`}>
                 <Home />
