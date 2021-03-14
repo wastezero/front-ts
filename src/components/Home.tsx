@@ -12,6 +12,7 @@ import ChevronDownSvg from "@heroicons/solid/chevron-down.svg";
 import cn from "classnames";
 import { BranchList } from "./pages/Branches/List";
 import RestaurantList from "./pages/Restaurants/List";
+import { ManagerList } from "./pages/Managers/List";
 
 const ProfileDropdown: React.FC = () => {
   const history = useHistory();
@@ -149,6 +150,9 @@ const Home: React.FC = () => {
             </Route>
             <Route path={`${path}/restaurants`}>
               <RestaurantList />
+            </Route>
+            <Route path={`${path}/managers`}>
+              <ManagerList />
             </Route>
           </Switch>
         </div>
