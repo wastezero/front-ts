@@ -4,6 +4,7 @@ import HomeSvg from "@heroicons/outline/home.svg";
 import LibrarySvg from "@heroicons/outline/library.svg";
 import OfficeBuilding from "@heroicons/outline/office-building.svg";
 import UserSvg from "@heroicons/outline/user.svg";
+import ChatSvg from "@heroicons/outline/chat-alt-2.svg";
 import MenuSvg from "@heroicons/outline/menu.svg";
 import ShoppingBagSvg from "@heroicons/outline/shopping-bag.svg";
 import { useStoreState } from "@src/hooks";
@@ -68,6 +69,14 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = (props) => {
         <ShoppingBagSvg className="h-6 w-6 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150 mr-4" />
       ),
       visible: user.role !== "client",
+    },
+    {
+      label: "Chats",
+      to: "/account/chats",
+      icon: (
+        <ChatSvg className="h-6 w-6 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150 mr-4" />
+      ),
+      visible: true,
     },
   ];
 
