@@ -55,8 +55,14 @@ const RegistrationManagerPage: React.FunctionComponent<IEnterNamePageProps> = (
         }}
         className="grid grid-cols-12 gap-6 pt-4 bg-white md:bg-transparent"
       >
-        <div className="shadow sm:rounded-md sm:overflow-hidden col-start-5 col-end-9">
+        <div className="shadow sm:rounded-md  col-start-5 col-end-9">
           <div className="px-4 py-5 bg-white sm:p-6">
+            <div>
+              <label className="block text-sm leading-5 font-medium text-gray-700 mb-2">
+                Branch
+              </label>
+              <BranchesDropdown value={branch} onChange={setBranch} />
+            </div>
             <div className="mt-6">
               <label className="block text-sm leading-5 font-medium text-gray-700 mb-2">
                 Email
@@ -129,12 +135,6 @@ const RegistrationManagerPage: React.FunctionComponent<IEnterNamePageProps> = (
                   setSurname(ev.target.value);
                 }}
               />
-            </div>
-            <div className="mt-6">
-              <label className="block text-sm leading-5 font-medium text-gray-700 mb-2">
-                Branch
-              </label>
-              <BranchesDropdown value={branch} onChange={setBranch} />
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
