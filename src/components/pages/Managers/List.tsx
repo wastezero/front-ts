@@ -34,7 +34,7 @@ export function ManagerList(props: IManagerListProps) {
 
   return (
     <LoadingContainer loading={loading}>
-      <ItemsListLayout title="Managers" createRoute={`${pathname}/create`}>
+      <ItemsListLayout title="Managers" createRoute={`/register/restaurant`}>
         <ItemsTable
           pagination={pagination}
           onPaginate={onPaginate}
