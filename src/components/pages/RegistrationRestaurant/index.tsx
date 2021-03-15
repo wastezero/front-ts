@@ -5,13 +5,15 @@ import Button from "@src/components/atoms/Button";
 import LogoImageUrl from "@src/assets/img/logo.png";
 import { useStoreActions } from "@src/hooks";
 import { setKisToken } from "@src/utils/utils";
-import FoodsDropdown from "@src/components/organisms/FoodsDropdown";
+import { firebaseapp } from "../../../utils/firebase";
 
 interface IEnterNamePageProps {}
 
 const RegistrationRestaurantPage: React.FunctionComponent<IEnterNamePageProps> = (
   props,
 ) => {
+  let storage = firebaseapp.storage();
+
   const api = new Api();
   const history = useHistory();
   const [loading, setLoading] = React.useState(false);
@@ -48,6 +50,15 @@ const RegistrationRestaurantPage: React.FunctionComponent<IEnterNamePageProps> =
         history.push("/account");
       })
       .catch(() => setLoading(false));
+  };
+
+  const onUploadFile = (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    fileRef.put(file).then(() => {
+      fileRef.getDownloadURL().then(setAvatar);
+    });
   };
 
   return (
@@ -175,13 +186,9 @@ const RegistrationRestaurantPage: React.FunctionComponent<IEnterNamePageProps> =
                 Cover photo
               </label>
               <input
-                required
-                placeholder="Enter photo url"
+                type="file"
+                onChange={onUploadFile}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                value={avatar}
-                onChange={(ev) => {
-                  setAvatar(ev.target.value);
-                }}
               />
             </div>
             <div className="mt-6">
