@@ -34,6 +34,23 @@ export class Api extends HttpClient {
     return this.instance.get(`registration/branches`);
   };
 
+  public chats = () => {
+    return this.instance.get("https://wastezero-backend.herokuapp.com/chats");
+  };
+
+  public messages = (chatId) => {
+    return this.instance.get(
+      `https://wastezero-backend.herokuapp.com/messages?chat_id=${chatId}`,
+    );
+  };
+
+  public sendMessage = (body) => {
+    return this.instance.post(
+      `https://wastezero-backend.herokuapp.com/messages`,
+      body,
+    );
+  };
+
   public branches = (page?) => {
     return this.instance.get(`admin_panel/branches?page=${page ? page : 1}`);
   };
