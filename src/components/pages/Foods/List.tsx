@@ -53,6 +53,14 @@ export function FoodList(props: IFoodListProps) {
               ),
             },
             {
+              title: "Name",
+              content: (item) => (
+                <p className="text-cool-gray-700 group-hover:text-cool-gray-900">
+                  {`${item.name}`}
+                </p>
+              ),
+            },
+            {
               title: "Description",
               content: (item) => (
                 <p className="text-cool-gray-700 group-hover:text-cool-gray-900">
