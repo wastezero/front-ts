@@ -12,6 +12,9 @@ const ChatMessages: React.FC<{ chat: any; cable: any }> = ({ chat, cable }) => {
   const [messages, setMessages] = React.useState([]);
   const [messageIsSending, setMessageIsSending] = React.useState(false);
   const [newMessage, setNewMessage] = React.useState("");
+  const messaagesRef = React.useRef<any>();
+
+  messaagesRef.current = messages;
 
   const token = getCookie("kis_token");
   const api = new Api();
@@ -29,7 +32,11 @@ const ChatMessages: React.FC<{ chat: any; cable: any }> = ({ chat, cable }) => {
         const action = payload.message.action;
         switch (action) {
           case "new_message":
-            // api.chats().then(({ data }) => setChats(data));
+            const messageParsed = JSON.parse(
+              JSON.parse(payload.message.message),
+            );
+
+            setMessages([...messaagesRef.current, messageParsed]);
             break;
           case "new_chat":
             // api.chats().then(({ data }) => setChats(data));
@@ -58,7 +65,7 @@ const ChatMessages: React.FC<{ chat: any; cable: any }> = ({ chat, cable }) => {
   return (
     <section
       aria-labelledby="message-heading"
-      className="min-w-0 flex-1 h-full flex flex-col overflow-hidden xl:order-last"
+      className="min-w-0 flex-1 h-full flex flex-col overflow-hidden"
     >
       <div className="min-h-0 flex-1 overflow-y-auto">
         <ul className="py-4 space-y-2 sm:px-6 sm:space-y-4 lg:px-8">
@@ -156,9 +163,8 @@ const ChatList: React.FunctionComponent<IChatListProps> = (props) => {
   }, []);
 
   return (
-    <main className="min-w-0 flex-1 border-t border-gray-200 xl:flex">
-      {currentChat && <ChatMessages chat={currentChat} cable={cable} />}
-      <aside className="block flex-shrink-0 order-first">
+    <main className="min-w-0 flex-1 border-t border-gray-200 overflow-scroll flex">
+      <aside className="block flex-shrink-0">
         <div className="h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100">
           <div className="flex-shrink-0">
             <div className="h-16 bg-white px-6 flex flex-col justify-center">
@@ -214,6 +220,7 @@ const ChatList: React.FunctionComponent<IChatListProps> = (props) => {
           </nav>
         </div>
       </aside>
+      {currentChat && <ChatMessages chat={currentChat} cable={cable} />}
     </main>
   );
 };
