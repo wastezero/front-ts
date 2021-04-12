@@ -1,7 +1,12 @@
 import * as React from "react";
 import { hot } from "react-hot-loader";
 import "tailwindcss/tailwind.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { StoreProvider } from "easy-peasy";
 import store from "@src/store";
 import EnterNamePage from "./pages/Login";
@@ -36,6 +41,9 @@ const App: React.FC = () => {
               </Route>
               <Route path={`/account`}>
                 <Home />
+              </Route>
+              <Route path={`/`}>
+                <Redirect to="/account" />
               </Route>
             </div>
           </Switch>
